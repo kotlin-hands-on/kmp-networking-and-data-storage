@@ -78,3 +78,10 @@ android {
         targetSdkVersion(30)
     }
 }
+
+sqldelight {
+    database("AppDatabase") {
+        packageName = "com.jetbrains.handson.kmm.shared.cache"
+    }
+}
+
