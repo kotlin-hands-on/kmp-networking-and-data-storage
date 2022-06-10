@@ -5,23 +5,23 @@ plugins {
 
 dependencies {
     implementation(project(":shared"))
-    implementation("com.google.android.material:material:1.3.0")
-    implementation("androidx.appcompat:appcompat:1.2.0")
-    implementation("androidx.constraintlayout:constraintlayout:2.0.4")
+    implementation("com.google.android.material:material:1.6.1")
+    implementation("androidx.appcompat:appcompat:1.4.2")
+    implementation("androidx.constraintlayout:constraintlayout:2.1.4")
     implementation("androidx.swiperefreshlayout:swiperefreshlayout:1.1.0")
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.5.0-native-mt")
-    implementation("androidx.core:core-ktx:1.3.1")
-    implementation("androidx.recyclerview:recyclerview:1.1.0")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.2")
+    implementation("androidx.core:core-ktx:1.8.0")
+    implementation("androidx.recyclerview:recyclerview:1.2.1")
     implementation("androidx.swiperefreshlayout:swiperefreshlayout:1.1.0")
     implementation("androidx.cardview:cardview:1.0.0")
 }
 
 android {
-    compileSdkVersion(30)
+    compileSdk = 32
     defaultConfig {
         applicationId = "com.jetbrains.handson.androidApp"
-        minSdkVersion(21)
-        targetSdkVersion(30)
+        minSdk =21
+        targetSdk =30
         versionCode = 1
         versionName = "1.0"
     }
@@ -39,4 +39,3 @@ android {
         jvmTarget = JavaVersion.VERSION_1_8.toString()
     }
 }
-

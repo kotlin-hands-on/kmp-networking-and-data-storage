@@ -1,29 +1,25 @@
 package com.jetbrains.handson.kmm.shared.network
 
 import com.jetbrains.handson.kmm.shared.entity.RocketLaunch
-import io.ktor.client.HttpClient
-import io.ktor.client.features.json.JsonFeature
-import io.ktor.client.features.json.serializer.KotlinxSerializer
+import io.ktor.client.*
+import io.ktor.client.call.*
+import io.ktor.client.plugins.contentnegotiation.*
 import io.ktor.client.request.*
+import io.ktor.serialization.kotlinx.json.*
 import kotlinx.serialization.json.Json
 
 class SpaceXApi {
     private val httpClient = HttpClient {
-        install(JsonFeature) {
-            val json = Json {
+        install(ContentNegotiation) {
+            json(Json {
                 ignoreUnknownKeys = true
                 useAlternativeNames = false
-            }
-            serializer = KotlinxSerializer(json)
+            })
         }
     }
 
     suspend fun getAllLaunches(): List<RocketLaunch> {
-        return httpClient.get(LAUNCHES_ENDPOINT)
-    }
-
-    companion object {
-        private const val LAUNCHES_ENDPOINT = "https://api.spacexdata.com/v3/launches"
+        return httpClient.get("https://api.spacexdata.com/v3/launches").body()
     }
 }
 
