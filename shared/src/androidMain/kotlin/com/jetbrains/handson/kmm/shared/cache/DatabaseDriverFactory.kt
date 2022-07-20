@@ -1,7 +1,6 @@
 package com.jetbrains.handson.kmm.shared.cache
 
 import android.content.Context
-import com.jetbrains.handson.kmm.shared.cache.AppDatabase
 import com.squareup.sqldelight.android.AndroidSqliteDriver
 import com.squareup.sqldelight.db.SqlDriver
 

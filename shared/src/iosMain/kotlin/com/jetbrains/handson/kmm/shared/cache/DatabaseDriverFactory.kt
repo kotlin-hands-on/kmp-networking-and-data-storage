@@ -1,6 +1,5 @@
 package com.jetbrains.handson.kmm.shared.cache
 
-import com.jetbrains.handson.kmm.shared.cache.AppDatabase
 import com.squareup.sqldelight.db.SqlDriver
 import com.squareup.sqldelight.drivers.native.NativeSqliteDriver
 

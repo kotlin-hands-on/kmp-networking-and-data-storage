@@ -1,6 +1,5 @@
 package com.jetbrains.handson.kmm.shared.cache
 
-import com.jetbrains.handson.kmm.shared.cache.AppDatabase
 import com.jetbrains.handson.kmm.shared.entity.Links
 import com.jetbrains.handson.kmm.shared.entity.Rocket
 import com.jetbrains.handson.kmm.shared.entity.RocketLaunch
