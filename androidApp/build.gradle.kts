@@ -17,11 +17,11 @@ dependencies {
 }
 
 android {
-    compileSdk = 32
+    compileSdk = 33
     defaultConfig {
         applicationId = "com.jetbrains.handson.androidApp"
         minSdk =21
-        targetSdk =30
+        targetSdk = 33
         versionCode = 1
         versionName = "1.0"
     }
