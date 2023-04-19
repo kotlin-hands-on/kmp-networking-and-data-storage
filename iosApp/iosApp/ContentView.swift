@@ -37,6 +37,7 @@ extension ContentView {
         case error(String)
     }
 
+    @MainActor
     class ViewModel: ObservableObject {
         let sdk: SpaceXSDK
         @Published var launches = LoadableLaunches.loading
@@ -47,14 +48,15 @@ extension ContentView {
         }
 
         func loadLaunches(forceReload: Bool) {
-            self.launches = .loading
-            sdk.getLaunches(forceReload: forceReload, completionHandler: { launches, error in
-                if let launches = launches {
+            Task {
+                do {
+                    self.launches = .loading
+                    let launches = try await sdk.getLaunches(forceReload: forceReload)
                     self.launches = .result(launches)
-                } else {
-                    self.launches = .error(error?.localizedDescription ?? "error")
+                } catch {
+                    self.launches = .error(error.localizedDescription)
                 }
-            })
+            }
         }
     }
 }
