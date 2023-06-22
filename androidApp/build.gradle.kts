@@ -5,13 +5,20 @@ plugins {
 
 dependencies {
     implementation(project(":shared"))
-    implementation("com.google.android.material:material:1.6.1")
-    implementation("androidx.appcompat:appcompat:1.4.2")
+    implementation("com.google.android.material:material:1.9.0")
+    implementation("androidx.appcompat:appcompat:1.6.1")
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")
 }
 
 android {
     compileSdk = 33
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_1_8
+        targetCompatibility = JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
     defaultConfig {
         applicationId = "com.jetbrains.handson.androidApp"
         minSdk = 21
@@ -24,4 +31,5 @@ android {
             isMinifyEnabled = false
         }
     }
+    namespace = "com.jetbrains.handson.androidApp"
 }
