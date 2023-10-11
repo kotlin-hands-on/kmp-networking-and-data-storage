@@ -1,15 +1,15 @@
 plugins {
     kotlin("multiplatform")
-    kotlin("plugin.serialization") version "1.8.21"
+    kotlin("plugin.serialization").version("1.9.20-RC")
     id("com.android.library")
-    id("com.squareup.sqldelight")
+    id("com.squareup.sqldelight").version("1.5.5")
 }
 
 group = "com.jetbrains.handson"
 version = "1.0"
 
 kotlin {
-    android {
+    androidTarget {
         compilations.all {
             kotlinOptions {
                 jvmTarget = "1.8"
@@ -27,15 +27,13 @@ kotlin {
         }
     }
 
-    val ktorVersion = "2.3.1"
-    val sqlDelightVersion = "1.5.4"
+    val ktorVersion = "2.3.2"
+    val sqlDelightVersion = "1.5.5"
     val coroutinesVersion = "1.7.1"
     val dateTimeVersion = "0.4.0"
 
     sourceSets {
-        targetHierarchy.default()
-
-        val commonMain by getting {
+        commonMain {
             dependencies {
                 implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutinesVersion")
                 implementation("io.ktor:ktor-client-core:$ktorVersion")
@@ -45,32 +43,18 @@ kotlin {
                 implementation("org.jetbrains.kotlinx:kotlinx-datetime:$dateTimeVersion")
             }
         }
-
-        val commonTest by getting {
-            dependencies {
-                implementation(kotlin("test"))
-            }
-        }
-        val androidMain by getting {
+        androidMain {
             dependencies {
                 implementation("io.ktor:ktor-client-android:$ktorVersion")
                 implementation("com.squareup.sqldelight:android-driver:$sqlDelightVersion")
             }
         }
-        val androidUnitTest by getting
-        val iosX64Main by getting
-        val iosArm64Main by getting
-        val iosSimulatorArm64Main by getting
-        val iosMain by getting {
+        iosMain {
             dependencies {
                 implementation("io.ktor:ktor-client-darwin:$ktorVersion")
                 implementation("com.squareup.sqldelight:native-driver:$sqlDelightVersion")
             }
         }
-        val iosX64Test by getting
-        val iosArm64Test by getting
-        val iosSimulatorArm64Test by getting
-        val iosTest by getting
     }
 }
 
