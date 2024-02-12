@@ -1,5 +1,5 @@
-package com.jetbrains.shared
-
-class Greeting {
-    fun greet() = "Hello world!"
+interface Platform {
+    val name: String
 }
+
+expect fun getPlatform(): Platform
