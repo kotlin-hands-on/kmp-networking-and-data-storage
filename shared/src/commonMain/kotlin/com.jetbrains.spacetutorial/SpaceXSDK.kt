@@ -14,8 +14,7 @@ class SpaceXSDK(databaseDriverFactory: DatabaseDriverFactory, val api: SpaceXApi
             cachedLaunches
         } else {
             api.getAllLaunches().also {
-                database.clearDatabase()
-                database.createLaunches(it)
+                database.clearAndCreateLaunches(it)
             }
         }
     }

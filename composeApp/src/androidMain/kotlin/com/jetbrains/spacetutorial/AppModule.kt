@@ -15,5 +15,5 @@ val appModule = module {
             ), api = get()
         )
     }
-    viewModel { AppViewModel(sdk = get()) }
+    viewModel { RocketLaunchViewModel(sdk = get()) }
 }

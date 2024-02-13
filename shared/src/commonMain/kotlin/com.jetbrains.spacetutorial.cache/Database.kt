@@ -8,7 +8,7 @@ internal class Database(databaseDriverFactory: DatabaseDriverFactory) {
     private val database = AppDatabase(databaseDriverFactory.createDriver())
     private val dbQuery = database.appDatabaseQueries
 
-    internal fun clearDatabase() {
+    private fun clearDatabase() {
         dbQuery.transaction {
             dbQuery.removeAllLaunches()
         }
@@ -44,12 +44,17 @@ internal class Database(databaseDriverFactory: DatabaseDriverFactory) {
         )
     }
 
-    internal fun createLaunches(launches: List<RocketLaunch>) {
+    private fun createLaunches(launches: List<RocketLaunch>) {
         dbQuery.transaction {
             launches.forEach { launch ->
                 insertLaunch(launch)
             }
         }
+    }
+
+    internal fun clearAndCreateLaunches(launches: List<RocketLaunch>) {
+        clearDatabase()
+        createLaunches(launches)
     }
 
     private fun insertLaunch(launch: RocketLaunch) {
