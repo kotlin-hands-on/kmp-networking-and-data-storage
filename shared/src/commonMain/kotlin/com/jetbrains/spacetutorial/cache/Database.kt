@@ -8,12 +8,6 @@ internal class Database(databaseDriverFactory: DatabaseDriverFactory) {
     private val database = AppDatabase(databaseDriverFactory.createDriver())
     private val dbQuery = database.appDatabaseQueries
 
-    private fun clearDatabase() {
-        dbQuery.transaction {
-            dbQuery.removeAllLaunches()
-        }
-    }
-
     internal fun getAllLaunches(): List<RocketLaunch> {
         return dbQuery.selectAllLaunchesInfo(::mapLaunchSelecting).executeAsList()
     }
@@ -44,29 +38,21 @@ internal class Database(databaseDriverFactory: DatabaseDriverFactory) {
         )
     }
 
-    private fun createLaunches(launches: List<RocketLaunch>) {
+    internal fun clearAndCreateLaunches(launches: List<RocketLaunch>) {
         dbQuery.transaction {
+            dbQuery.removeAllLaunches()
             launches.forEach { launch ->
-                insertLaunch(launch)
+                dbQuery.insertLaunch(
+                    flightNumber = launch.flightNumber.toLong(),
+                    missionName = launch.missionName,
+                    details = launch.details,
+                    launchSuccess = launch.launchSuccess ?: false,
+                    launchDateUTC = launch.launchDateUTC,
+                    patchUrlSmall = launch.links.patch?.small,
+                    patchUrlLarge = launch.links.patch?.large,
+                    articleUrl = launch.links.article
+                )
             }
         }
-    }
-
-    internal fun clearAndCreateLaunches(launches: List<RocketLaunch>) {
-        clearDatabase()
-        createLaunches(launches)
-    }
-
-    private fun insertLaunch(launch: RocketLaunch) {
-        dbQuery.insertLaunch(
-            flightNumber = launch.flightNumber.toLong(),
-            missionName = launch.missionName,
-            details = launch.details,
-            launchSuccess = launch.launchSuccess ?: false,
-            launchDateUTC = launch.launchDateUTC,
-            patchUrlSmall = launch.links.patch?.small,
-            patchUrlLarge = launch.links.patch?.large,
-            articleUrl = launch.links.article
-        )
     }
 }
