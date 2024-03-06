@@ -3,10 +3,13 @@ import Shared
 
 @main
 struct iOSApp: App {
-    let sdk = SpaceXSDK(databaseDriverFactory: IOSDatabaseDriverFactory(), api: SpaceXApi())
+    init() {
+        KoinHelperKt.doInitKoin()
+    }
+    
     var body: some Scene {
         WindowGroup {
-            ContentView(viewModel: .init(sdk: sdk))
+            ContentView(viewModel: .init())
         }
     }
 }
