@@ -1,12 +1,15 @@
 import SwiftUI
-import shared
+import Shared
 
 @main
 struct iOSApp: App {
-    let sdk = SpaceXSDK(databaseDriverFactory: DatabaseDriverFactory())
+    init() {
+        KoinHelperKt.doInitKoin()
+    }
+    
     var body: some Scene {
         WindowGroup {
-            ContentView(viewModel: .init(sdk: sdk))
+            ContentView(viewModel: .init())
         }
     }
 }

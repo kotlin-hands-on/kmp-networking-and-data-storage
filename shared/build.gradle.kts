@@ -1,94 +1,64 @@
+
 plugins {
-    kotlin("multiplatform")
-    kotlin("plugin.serialization") version "1.8.21"
-    id("com.android.library")
-    id("com.squareup.sqldelight")
+    alias(libs.plugins.kotlinMultiplatform)
+    alias(libs.plugins.androidLibrary)
+    alias(libs.plugins.kotlinxSerialization)
+    alias(libs.plugins.sqldelight)
 }
 
-group = "com.jetbrains.handson"
-version = "1.0"
-
 kotlin {
-    android {
+    androidTarget {
         compilations.all {
             kotlinOptions {
                 jvmTarget = "1.8"
             }
         }
     }
-
+    
     listOf(
         iosX64(),
         iosArm64(),
         iosSimulatorArm64()
-    ).forEach {
-        it.binaries.framework {
-            baseName = "shared"
+    ).forEach { iosTarget ->
+        iosTarget.binaries.framework {
+            baseName = "Shared"
+            isStatic = true
         }
     }
 
-    val ktorVersion = "2.3.1"
-    val sqlDelightVersion = "1.5.4"
-    val coroutinesVersion = "1.7.1"
-    val dateTimeVersion = "0.4.0"
-
     sourceSets {
-        targetHierarchy.default()
-
-        val commonMain by getting {
-            dependencies {
-                implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutinesVersion")
-                implementation("io.ktor:ktor-client-core:$ktorVersion")
-                implementation("io.ktor:ktor-client-content-negotiation:$ktorVersion")
-                implementation("io.ktor:ktor-serialization-kotlinx-json:$ktorVersion")
-                implementation("com.squareup.sqldelight:runtime:$sqlDelightVersion")
-                implementation("org.jetbrains.kotlinx:kotlinx-datetime:$dateTimeVersion")
-            }
+        commonMain.dependencies {
+            implementation(libs.kotlinx.coroutines.core)
+            implementation(libs.ktor.client.core)
+            implementation(libs.ktor.client.content.negotiation)
+            implementation(libs.ktor.serialization.kotlinx.json)
+            implementation(libs.runtime)
+            implementation(libs.kotlinx.datetime)
+            implementation(libs.koin.core)
         }
-
-        val commonTest by getting {
-            dependencies {
-                implementation(kotlin("test"))
-            }
+        androidMain.dependencies {
+            implementation(libs.ktor.client.android)
+            implementation(libs.android.driver)
         }
-        val androidMain by getting {
-            dependencies {
-                implementation("io.ktor:ktor-client-android:$ktorVersion")
-                implementation("com.squareup.sqldelight:android-driver:$sqlDelightVersion")
-            }
+        iosMain.dependencies {
+            implementation(libs.ktor.client.darwin)
+            implementation(libs.native.driver)
         }
-        val androidUnitTest by getting
-        val iosX64Main by getting
-        val iosArm64Main by getting
-        val iosSimulatorArm64Main by getting
-        val iosMain by getting {
-            dependencies {
-                implementation("io.ktor:ktor-client-darwin:$ktorVersion")
-                implementation("com.squareup.sqldelight:native-driver:$sqlDelightVersion")
-            }
-        }
-        val iosX64Test by getting
-        val iosArm64Test by getting
-        val iosSimulatorArm64Test by getting
-        val iosTest by getting
     }
 }
 
 android {
-    compileSdk = 32
-    sourceSets["main"].manifest.srcFile("src/androidMain/AndroidManifest.xml")
+    namespace = "com.jetbrains.spacetutorial.shared"
+    compileSdk = libs.versions.android.compileSdk.get().toInt()
     defaultConfig {
-        minSdk = 21
+        minSdk = libs.versions.android.minSdk.get().toInt()
     }
-    compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
-    }
-    namespace = "com.jetbrains.handson.android"
 }
 
 sqldelight {
-    database("AppDatabase") {
-        packageName = "com.jetbrains.handson.kmm.shared.cache"
+    databases {
+        create("AppDatabase") {
+            packageName.set("com.jetbrains.spacetutorial.cache")
+        }
     }
 }

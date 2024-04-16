@@ -1,13 +1,5 @@
-//
-//  RocketLaunchRow.swift
-//  iosApp
-//
-//  Created by Ekaterina.Petrova on 25.08.2020.
-//  Copyright © 2020 orgName. All rights reserved.
-//
-
 import SwiftUI
-import shared
+import Shared
 
 struct RocketLaunchRow: View {
     var rocketLaunch: RocketLaunch
@@ -15,10 +7,9 @@ struct RocketLaunchRow: View {
     var body: some View {
         HStack() {
             VStack(alignment: .leading, spacing: 10.0) {
-                Text("Launch name: \(rocketLaunch.missionName)")
+                Text("\(rocketLaunch.missionName) - \(String(rocketLaunch.launchYear))").font(.system(size: 18)).bold()
                 Text(launchText).foregroundColor(launchColor)
-                Text("Launch year: \(String(rocketLaunch.launchYear))")
-                Text("Launch details: \(rocketLaunch.details ?? "")")
+                Text("\(rocketLaunch.details ?? "")")
             }
             Spacer()
         }

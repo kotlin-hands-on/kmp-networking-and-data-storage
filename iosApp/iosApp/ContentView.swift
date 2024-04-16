@@ -1,5 +1,5 @@
 import SwiftUI
-import shared
+import Shared
 
 struct ContentView: View {
   @ObservedObject private(set) var viewModel: ViewModel
@@ -39,11 +39,10 @@ extension ContentView {
 
     @MainActor
     class ViewModel: ObservableObject {
-        let sdk: SpaceXSDK
+        let helper: KoinHelper = KoinHelper()
         @Published var launches = LoadableLaunches.loading
 
-        init(sdk: SpaceXSDK) {
-            self.sdk = sdk
+        init() {
             self.loadLaunches(forceReload: false)
         }
 
@@ -51,7 +50,7 @@ extension ContentView {
             Task {
                 do {
                     self.launches = .loading
-                    let launches = try await sdk.getLaunches(forceReload: forceReload)
+                    let launches = try await helper.getLaunches(forceReload: forceReload)
                     self.launches = .result(launches)
                 } catch {
                     self.launches = .error(error.localizedDescription)
