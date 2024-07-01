@@ -7,3 +7,4 @@ local.properties
 .DS_Store
 xcuserdata/
 Pods/
+/.kotlin/
