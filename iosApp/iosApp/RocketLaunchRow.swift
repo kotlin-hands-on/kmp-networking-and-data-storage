@@ -9,6 +9,7 @@ struct RocketLaunchRow: View {
             VStack(alignment: .leading, spacing: 10.0) {
                 Text("\(rocketLaunch.missionName) - \(String(rocketLaunch.launchYear))").font(.system(size: 18)).bold()
                 Text(launchText).foregroundColor(launchColor)
+                Text("Launch year: \(String(rocketLaunch.launchYear))")
                 Text("\(rocketLaunch.details ?? "")")
             }
             Spacer()
@@ -17,19 +18,19 @@ struct RocketLaunchRow: View {
 }
 
 extension RocketLaunchRow {
-   private var launchText: String {
-       if let isSuccess = rocketLaunch.launchSuccess {
-           return isSuccess.boolValue ? "Successful" : "Unsuccessful"
-       } else {
-           return "No data"
-       }
-   }
+    private var launchText: String {
+        if let isSuccess = rocketLaunch.launchSuccess {
+            return isSuccess.boolValue ? "Successful" : "Unsuccessful"
+        } else {
+            return "No data"
+        }
+    }
 
-   private var launchColor: Color {
-       if let isSuccess = rocketLaunch.launchSuccess {
-           return isSuccess.boolValue ? Color.green : Color.red
-       } else {
-           return Color.gray
-       }
-   }
+    private var launchColor: Color {
+        if let isSuccess = rocketLaunch.launchSuccess {
+            return isSuccess.boolValue ? Color.green : Color.red
+        } else {
+            return Color.gray
+        }
+    }
 }

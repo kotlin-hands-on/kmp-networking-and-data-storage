@@ -8,7 +8,6 @@ import com.jetbrains.spacetutorial.entity.RocketLaunch
 import kotlinx.coroutines.launch
 
 class RocketLaunchViewModel(private val sdk: SpaceXSDK) : ViewModel() {
-
     private val _state = mutableStateOf(RocketLaunchScreenState())
     val state: State<RocketLaunchScreenState> = _state
 
@@ -27,6 +26,7 @@ class RocketLaunchViewModel(private val sdk: SpaceXSDK) : ViewModel() {
             }
         }
     }
+
 }
 
 data class RocketLaunchScreenState(

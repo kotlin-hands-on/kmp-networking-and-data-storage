@@ -9,4 +9,3 @@ class AndroidDatabaseDriverFactory(private val context: Context) : DatabaseDrive
         return AndroidSqliteDriver(AppDatabase.Schema, context, "launch.db")
     }
 }
-
