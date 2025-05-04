@@ -15,7 +15,7 @@ kotlin {
             jvmTarget.set(JvmTarget.JVM_11)
         }
     }
-    
+
     sourceSets {
         androidMain.dependencies {
             implementation(compose.preview)
@@ -72,4 +72,3 @@ android {
         debugImplementation(compose.uiTooling)
     }
 }
-
