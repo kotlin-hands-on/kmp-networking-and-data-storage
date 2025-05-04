@@ -33,8 +33,7 @@ internal class Database(databaseDriverFactory: DatabaseDriverFactory) {
                     small = patchUrlSmall,
                     large = patchUrlLarge
                 ),
-                article = articleUrl
-            )
+                article = articleUrl            )
         )
     }
 
