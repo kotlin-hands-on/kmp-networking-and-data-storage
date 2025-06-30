@@ -1,3 +1,5 @@
+package com.jetbrains.spacetutorial
+
 import android.os.Build
 
 class AndroidPlatform : Platform {

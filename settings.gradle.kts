@@ -1,4 +1,4 @@
-rootProject.name = "SpaceTutorial"
+rootProject.name = "spacetutorial"
 enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
 
 pluginManagement {
