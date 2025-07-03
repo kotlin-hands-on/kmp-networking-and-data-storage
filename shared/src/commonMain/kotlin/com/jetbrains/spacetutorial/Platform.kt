@@ -1,3 +1,5 @@
+package com.jetbrains.spacetutorial
+
 interface Platform {
     val name: String
 }
