@@ -26,7 +26,6 @@ class RocketLaunchViewModel(private val sdk: SpaceXSDK) : ViewModel() {
             }
         }
     }
-
 }
 
 data class RocketLaunchScreenState(
