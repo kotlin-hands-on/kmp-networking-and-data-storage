@@ -1,12 +1,10 @@
 package com.jetbrains.spacetutorial
 
-import com.jetbrains.spacetutorial.cache.IOSDatabaseDriverFactory
-import org.koin.core.component.KoinComponent
+import org.koin.ksp.generated.*
 import com.jetbrains.spacetutorial.entity.RocketLaunch
-import com.jetbrains.spacetutorial.network.SpaceXApi
+import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
-import org.koin.core.context.startKoin
-import org.koin.dsl.module
+import com.jetbrains.spacetutorial.di.IOSKoinApp
 
 class KoinHelper : KoinComponent {
     private val sdk: SpaceXSDK by inject<SpaceXSDK>()
@@ -17,15 +15,5 @@ class KoinHelper : KoinComponent {
 }
 
 fun initKoin() {
-    startKoin {
-        modules(module {
-            single<SpaceXApi> { SpaceXApi() }
-            single<SpaceXSDK> {
-                SpaceXSDK(
-                    databaseDriverFactory = IOSDatabaseDriverFactory(), api = get()
-                )
-            }
-        })
-    }
+    IOSKoinApp.startKoin()
 }
-

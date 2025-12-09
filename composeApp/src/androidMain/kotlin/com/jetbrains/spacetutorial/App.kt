@@ -32,6 +32,8 @@ import com.jetbrains.spacetutorial.theme.app_theme_unsuccessful
 import kotlinx.coroutines.launch
 import org.jetbrains.compose.ui.tooling.preview.Preview
 import org.koin.androidx.compose.koinViewModel
+import org.koin.compose.koinInject
+import org.koin.java.KoinJavaComponent.inject
 
 @OptIn(
     ExperimentalMaterial3Api::class
@@ -39,7 +41,7 @@ import org.koin.androidx.compose.koinViewModel
 @Composable
 @Preview
 fun App() {
-    val viewModel = koinViewModel<RocketLaunchViewModel>()
+    val viewModel: RocketLaunchViewModel = koinViewModel<RocketLaunchViewModel>()
     val state by remember { viewModel.state }
     val coroutineScope = rememberCoroutineScope()
     var isRefreshing by remember { mutableStateOf(false) }

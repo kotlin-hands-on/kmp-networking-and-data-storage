@@ -5,6 +5,7 @@ plugins {
     alias(libs.plugins.kotlinMultiplatform)
     alias(libs.plugins.androidLibrary)
     alias(libs.plugins.kotlinxSerialization)
+    alias(libs.plugins.ksp)
     alias(libs.plugins.sqldelight)
 }
 
@@ -39,14 +40,21 @@ kotlin {
             implementation(libs.runtime)
             implementation(libs.kotlinx.datetime)
             implementation(libs.koin.core)
+            api(libs.koin.annotations)
         }
         androidMain.dependencies {
             implementation(libs.ktor.client.android)
             implementation(libs.android.driver)
+            implementation(libs.koin.androidx.compose)
+            implementation(libs.androidx.lifecycle.viewmodel.compose)
+            implementation(libs.koin.core)
+            implementation(libs.koin.android)
         }
         iosMain.dependencies {
             implementation(libs.ktor.client.darwin)
             implementation(libs.native.driver)
+            implementation(libs.koin.core)
+            implementation("io.insert-koin:koin-compose:4.1.1")
         }
     }
 }
@@ -69,4 +77,12 @@ sqldelight {
             packageName.set("com.jetbrains.spacetutorial.cache")
         }
     }
+}
+
+dependencies {
+    add("kspCommonMainMetadata", libs.koin.compiler)
+    add("kspAndroid", libs.koin.compiler)
+    add("kspIosX64", libs.koin.compiler)
+    add("kspIosArm64", libs.koin.compiler)
+    add("kspIosSimulatorArm64", libs.koin.compiler)
 }
