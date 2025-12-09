@@ -7,7 +7,9 @@ import io.ktor.client.plugins.contentnegotiation.ContentNegotiation
 import io.ktor.client.request.get
 import io.ktor.serialization.kotlinx.json.json
 import kotlinx.serialization.json.Json
+import org.koin.core.annotation.Single
 
+@Single
 class SpaceXApi {
     private val httpClient = HttpClient {
         install(ContentNegotiation) {
