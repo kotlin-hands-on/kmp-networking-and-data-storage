@@ -57,6 +57,38 @@ kotlin {
             implementation("io.insert-koin:koin-compose:4.1.1")
         }
     }
+
+    // KSP Common sourceSet
+    sourceSets.named("commonMain").configure {
+        kotlin.srcDir("build/generated/ksp/metadata/commonMain/kotlin")
+    }
+}
+
+
+sqldelight {
+    databases {
+        create("AppDatabase") {
+            packageName.set("com.jetbrains.spacetutorial.cache")
+        }
+    }
+}
+
+// KSP Tasks
+dependencies {
+    add("kspCommonMainMetadata", libs.koin.compiler)
+    add("kspAndroid", libs.koin.compiler)
+    add("kspIosX64", libs.koin.compiler)
+    add("kspIosArm64", libs.koin.compiler)
+    add("kspIosSimulatorArm64", libs.koin.compiler)
+}
+
+// KSP Metadata Trigger
+tasks.matching { it.name.startsWith("ksp") && it.name != "kspCommonMainKotlinMetadata" }.configureEach {
+    dependsOn("kspCommonMainKotlinMetadata")
+}
+
+ksp {
+    arg("KOIN_CONFIG_CHECK","true")
 }
 
 android {
@@ -71,18 +103,3 @@ android {
     }
 }
 
-sqldelight {
-    databases {
-        create("AppDatabase") {
-            packageName.set("com.jetbrains.spacetutorial.cache")
-        }
-    }
-}
-
-dependencies {
-    add("kspCommonMainMetadata", libs.koin.compiler)
-    add("kspAndroid", libs.koin.compiler)
-    add("kspIosX64", libs.koin.compiler)
-    add("kspIosArm64", libs.koin.compiler)
-    add("kspIosSimulatorArm64", libs.koin.compiler)
-}
