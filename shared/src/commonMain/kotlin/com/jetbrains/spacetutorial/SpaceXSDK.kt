@@ -4,9 +4,9 @@ import com.jetbrains.spacetutorial.cache.Database
 import com.jetbrains.spacetutorial.cache.DatabaseDriverFactory
 import com.jetbrains.spacetutorial.entity.RocketLaunch
 import com.jetbrains.spacetutorial.network.SpaceXApi
-import org.koin.core.annotation.Single
+import org.koin.core.annotation.Singleton
 
-@Single
+@Singleton
 class SpaceXSDK(databaseDriverFactory: DatabaseDriverFactory, val api: SpaceXApi) {
     private val database = Database(databaseDriverFactory)
 

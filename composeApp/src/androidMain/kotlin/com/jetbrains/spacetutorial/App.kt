@@ -31,9 +31,7 @@ import com.jetbrains.spacetutorial.theme.app_theme_successful
 import com.jetbrains.spacetutorial.theme.app_theme_unsuccessful
 import kotlinx.coroutines.launch
 import org.jetbrains.compose.ui.tooling.preview.Preview
-import org.koin.androidx.compose.koinViewModel
-import org.koin.compose.koinInject
-import org.koin.java.KoinJavaComponent.inject
+import org.koin.compose.viewmodel.koinViewModel
 
 @OptIn(
     ExperimentalMaterial3Api::class

@@ -1,10 +1,10 @@
 package com.jetbrains.spacetutorial
 
 import com.jetbrains.spacetutorial.di.KoinApp
-import org.koin.ksp.generated.*
 import com.jetbrains.spacetutorial.entity.RocketLaunch
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
+import org.koin.plugin.module.dsl.startKoin
 
 class KoinHelper : KoinComponent {
     private val sdk: SpaceXSDK by inject()
@@ -15,5 +15,5 @@ class KoinHelper : KoinComponent {
 }
 
 fun initKoin() {
-    KoinApp.startKoin()
+    startKoin<KoinApp>()
 }
