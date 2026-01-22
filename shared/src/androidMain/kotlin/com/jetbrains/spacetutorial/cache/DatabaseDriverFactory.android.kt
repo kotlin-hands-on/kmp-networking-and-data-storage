@@ -12,7 +12,6 @@ actual class DatabaseDriverFactory actual constructor(val contextWrapper: Lazy<C
     private val androidContext by lazy { (contextWrapper.value as AndroidContextWrapper).context }
 
     actual fun createDriver(): SqlDriver {
-        // use of Android context
         return AndroidSqliteDriver(AppDatabase.Schema, androidContext, "launch.db")
     }
 }

@@ -9,6 +9,7 @@ class MainApplication : Application() {
     override fun onCreate() {
         super.onCreate()
 
+        // Start Koin with KoinApp configuration and provide Android context
         startKoin<KoinApp> {
             androidContext(this@MainApplication)
         }
