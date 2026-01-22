@@ -54,14 +54,13 @@ kotlin {
             implementation(libs.native.driver)
         }
     }
-
-    // KSP Common sourceSet
-    sourceSets.named("commonMain").configure {
-        kotlin.srcDir("build/generated/ksp/metadata/commonMain/kotlin")
-    }
 }
 
+// Koin Compiler Plugin Configuration
+// Entire section can be removed if don't need logs
 koinCompiler {
+    // Display logs during compilation (what annotations are processed, etc.)
+    // can be disabled if not needed
     userLogs = true
 }
 
