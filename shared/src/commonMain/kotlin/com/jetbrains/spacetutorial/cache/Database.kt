@@ -1,11 +1,12 @@
 package com.jetbrains.spacetutorial.cache
 
+import app.cash.sqldelight.db.SqlDriver
 import com.jetbrains.spacetutorial.entity.Links
 import com.jetbrains.spacetutorial.entity.Patch
 import com.jetbrains.spacetutorial.entity.RocketLaunch
 
-internal class Database(databaseDriverFactory: DatabaseDriverFactory) {
-    private val database = AppDatabase(databaseDriverFactory.createDriver())
+internal class Database(dbDriver : SqlDriver) {
+    private val database = AppDatabase(dbDriver)
     private val dbQuery = database.appDatabaseQueries
 
     internal fun getAllLaunches(): List<RocketLaunch> {

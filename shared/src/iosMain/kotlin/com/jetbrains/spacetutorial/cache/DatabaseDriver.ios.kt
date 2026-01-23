@@ -5,7 +5,7 @@ import app.cash.sqldelight.driver.native.NativeSqliteDriver
 import com.jetbrains.spacetutorial.context.ContextWrapper
 import org.koin.core.annotation.Singleton
 
+/** iOS implementation: uses NativeSqliteDriver (no context needed). */
 @Singleton
-actual class DatabaseDriverFactory actual constructor(contextWrapper: Lazy<ContextWrapper>) {
-    actual fun createDriver(): SqlDriver = NativeSqliteDriver(AppDatabase.Schema, "launch.db")
-}
+actual fun createDatabaseDriverFactory(contextWrapper: ContextWrapper): SqlDriver =
+    NativeSqliteDriver(AppDatabase.Schema, "launch.db")
