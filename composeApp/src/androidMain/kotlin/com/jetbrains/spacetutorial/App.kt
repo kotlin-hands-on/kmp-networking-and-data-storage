@@ -24,13 +24,13 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.jetbrains.spacetutorial.entity.RocketLaunch
 import com.jetbrains.spacetutorial.theme.AppTheme
 import com.jetbrains.spacetutorial.theme.app_theme_successful
 import com.jetbrains.spacetutorial.theme.app_theme_unsuccessful
 import kotlinx.coroutines.launch
-import org.jetbrains.compose.ui.tooling.preview.Preview
 import org.koin.androidx.compose.koinViewModel
 
 @OptIn(

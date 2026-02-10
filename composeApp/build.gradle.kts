@@ -10,7 +10,7 @@ plugins {
 
 kotlin {
     androidLibrary {
-        namespace = "com.jetbrains.spacetutorial"
+        namespace = "com.jetbrains.spacetutorial.composeApp"
         compileSdk = libs.versions.android.compileSdk.get().toInt()
 
         compilerOptions {
@@ -28,6 +28,9 @@ kotlin {
 
     @OptIn(ExperimentalKotlinGradlePluginApi::class)
     dependencies {
+        implementation(libs.androidx.compose.material3)
+        implementation(libs.koin.androidx.compose)
+        implementation(libs.androidx.lifecycle.viewmodel.compose)
         implementation(libs.compose.runtime)
         implementation(libs.compose.foundation)
         implementation(libs.compose.material3)
@@ -36,6 +39,7 @@ kotlin {
         implementation(libs.compose.uiToolingPreview)
         implementation(libs.androidx.lifecycle.viewmodel)
         implementation(libs.androidx.lifecycle.runtimeCompose)
+        implementation(libs.compose.uiToolingPreview)
         implementation(projects.shared)
 
         testImplementation(libs.kotlin.test)
