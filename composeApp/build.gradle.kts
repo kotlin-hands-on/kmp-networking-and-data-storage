@@ -10,7 +10,7 @@ plugins {
 
 kotlin {
     androidLibrary {
-        namespace = "com.jetbrains.spacetutorial"
+        namespace = "com.jetbrains.spacetutorial.android"
         compileSdk = libs.versions.android.compileSdk.get().toInt()
         minSdk = libs.versions.android.minSdk.get().toInt()
 
