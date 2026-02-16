@@ -18,10 +18,14 @@ dateTimeVersion = "0.7.1"
 koin = "4.1.1"
 ktor = "3.4.0"
 sqlDelight = "2.2.1"
+mockk = "1.13.17"
+kotlinx-coroutines-test = "1.10.2"
 lifecycleViewmodelCompose = "2.10.0"
 material3 = "1.4.0"
 
 [libraries]
+mockk = { module = "io.mockk:mockk", version.ref = "mockk" }
+kotlinx-coroutines-test = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-test", version.ref = "kotlinx-coroutines-test" }
 kotlin-test = { module = "org.jetbrains.kotlin:kotlin-test", version.ref = "kotlin" }
 kotlin-testJunit = { module = "org.jetbrains.kotlin:kotlin-test-junit", version.ref = "kotlin" }
 junit = { module = "junit:junit", version.ref = "junit" }

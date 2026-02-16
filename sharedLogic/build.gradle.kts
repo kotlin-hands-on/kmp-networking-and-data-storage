@@ -47,6 +47,11 @@ kotlin {
         implementation(libs.runtime)
         implementation(libs.kotlinx.datetime)
         implementation(libs.koin.core)
+        testImplementation(libs.kotlin.test)
+        testImplementation(libs.kotlin.testJunit)
+        testImplementation(libs.junit)
+        testImplementation(libs.mockk)
+        testImplementation(libs.kotlinx.coroutines.test)
     }
 
     sourceSets {
