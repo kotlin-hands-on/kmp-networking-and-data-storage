@@ -10,7 +10,7 @@ plugins {
 
 kotlin {
     androidLibrary {
-        namespace = "com.jetbrains.spacetutorial.composeApp"
+        namespace = "com.jetbrains.spacetutorial.sharedUI"
         compileSdk = libs.versions.android.compileSdk.get().toInt()
 
         compilerOptions {
@@ -33,14 +33,13 @@ kotlin {
         implementation(libs.androidx.lifecycle.viewmodel.compose)
         implementation(libs.compose.runtime)
         implementation(libs.compose.foundation)
-        implementation(libs.compose.material3)
         implementation(libs.compose.ui)
         implementation(libs.compose.resources)
         implementation(libs.compose.uiToolingPreview)
         implementation(libs.androidx.lifecycle.viewmodel)
         implementation(libs.androidx.lifecycle.runtimeCompose)
         implementation(libs.compose.uiToolingPreview)
-        implementation(projects.shared)
+        implementation(projects.sharedLogic)
 
         testImplementation(libs.kotlin.test)
     }
