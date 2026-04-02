@@ -1,5 +1,5 @@
 import SwiftUI
-import Shared
+import SharedLogic
 
 struct RocketLaunchRow: View {
     var rocketLaunch: RocketLaunch

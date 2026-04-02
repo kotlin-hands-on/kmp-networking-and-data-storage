@@ -11,10 +11,6 @@ class RocketLaunchViewModel(private val sdk: SpaceXSDK) : ViewModel() {
     private val _state = mutableStateOf(RocketLaunchScreenState())
     val state: State<RocketLaunchScreenState> = _state
 
-    init {
-        loadLaunches()
-    }
-
     fun loadLaunches() {
         viewModelScope.launch {
             _state.value = _state.value.copy(isLoading = true, launches = emptyList())
@@ -25,6 +21,10 @@ class RocketLaunchViewModel(private val sdk: SpaceXSDK) : ViewModel() {
                 _state.value = _state.value.copy(isLoading = false, launches = emptyList())
             }
         }
+    }
+
+    init {
+        loadLaunches()
     }
 }
 

@@ -1,4 +1,3 @@
-import org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 
 plugins {
@@ -9,54 +8,44 @@ plugins {
 }
 
 kotlin {
-    androidLibrary {
-        namespace = "com.jetbrains.spacetutorial.sharedLogic"
-        compileSdk = libs.versions.android.compileSdk.get().toInt()
-        minSdk = libs.versions.android.minSdk.get().toInt()
-
-        compilerOptions {
-            jvmTarget = JvmTarget.JVM_11
-        }
-
-        androidResources {
-            enable = true
-        }
-        
-        withHostTest {
-            isIncludeAndroidResources = true
-        }
-    }
-
     listOf(
-        iosX64(),
         iosArm64(),
         iosSimulatorArm64()
     ).forEach { iosTarget ->
         iosTarget.binaries.framework {
-            baseName = "Shared"
+            baseName = "SharedLogic"
             isStatic = true
         }
     }
-
-    @OptIn(ExperimentalKotlinGradlePluginApi::class)
-    dependencies {
-        implementation(libs.kotlinx.coroutines.core)
-        implementation(libs.ktor.client.core)
-        implementation(libs.ktor.client.content.negotiation)
-        implementation(libs.ktor.serialization.kotlinx.json)
-        implementation(libs.runtime)
-        implementation(libs.kotlinx.datetime)
-        implementation(libs.koin.core)
-        testImplementation(libs.kotlin.test)
-        testImplementation(libs.kotlin.testJunit)
-        testImplementation(libs.junit)
-        testImplementation(libs.mockk)
-        testImplementation(libs.kotlinx.coroutines.test)
+    
+    androidLibrary {
+       namespace = "com.jetbrains.spacetutorial.sharedLogic"
+       compileSdk = libs.versions.android.compileSdk.get().toInt()
+       minSdk = libs.versions.android.minSdk.get().toInt()
+    
+       compilerOptions {
+           jvmTarget = JvmTarget.JVM_11
+       }
+       androidResources {
+           enable = true
+       }
+       withHostTest {
+           isIncludeAndroidResources = true
+       }
     }
-
+    
     sourceSets {
-        all {
-            languageSettings.optIn("kotlin.time.ExperimentalTime")
+        commonMain.dependencies {
+            implementation(libs.kotlinx.coroutines.core)
+            implementation(libs.ktor.client.core)
+            implementation(libs.ktor.client.content.negotiation)
+            implementation(libs.ktor.serialization.kotlinx.json)
+            implementation(libs.runtime)
+            implementation(libs.kotlinx.datetime)
+            implementation(libs.koin.core)
+        }
+        commonTest.dependencies {
+            implementation(libs.kotlin.test)
         }
         androidMain.dependencies {
             implementation(libs.ktor.client.android)

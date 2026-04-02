@@ -3,7 +3,7 @@ package com.jetbrains.spacetutorial
 import kotlin.test.Test
 import kotlin.test.assertEquals
 
-class ComposeAppAndroidUnitTest {
+class SharedLogicAndroidHostTest {
 
     @Test
     fun example() {

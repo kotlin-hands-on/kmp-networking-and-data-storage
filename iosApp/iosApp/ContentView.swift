@@ -1,5 +1,5 @@
 import SwiftUI
-import Shared
+import SharedLogic
 
 struct ContentView: View {
     @ObservedObject private(set) var viewModel: ViewModel
@@ -11,7 +11,7 @@ struct ContentView: View {
             .navigationBarItems(trailing:
                 Button("Reload") {
                     self.viewModel.loadLaunches(forceReload: true)
-            })
+                })
         }
     }
 
@@ -39,7 +39,7 @@ extension ContentView {
     @MainActor
     class ViewModel: ObservableObject {
         @Published var launches = LoadableLaunches.loading
-        
+
         let helper: KoinHelper = KoinHelper()
 
         init() {

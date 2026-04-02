@@ -1,4 +1,3 @@
-import org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 
 plugins {
@@ -8,18 +7,22 @@ plugins {
 }
 
 kotlin {
-    target {
-        compilerOptions {
-            jvmTarget.set(JvmTarget.JVM_11)
-        }
+    compilerOptions {
+        jvmTarget = JvmTarget.JVM_11
     }
-
     dependencies {
-        implementation(projects.sharedUI)
-        implementation(libs.androidx.activity.compose)
         implementation(libs.koin.androidx.compose)
-        implementation(libs.compose.uiToolingPreview)
+        implementation(libs.compose.material3)
     }
+}
+dependencies {
+    implementation(projects.sharedLogic)
+
+    implementation(libs.androidx.activity.compose)
+
+    implementation(libs.compose.uiToolingPreview)
+    debugImplementation(libs.compose.uiTooling)
+    implementation(libs.compose.uiToolingPreview)
 }
 
 android {
@@ -48,4 +51,3 @@ android {
         targetCompatibility = JavaVersion.VERSION_11
     }
 }
-

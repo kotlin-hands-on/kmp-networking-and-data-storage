@@ -3,7 +3,7 @@ package com.jetbrains.spacetutorial
 import kotlin.test.Test
 import kotlin.test.assertEquals
 
-class SharedCommonTest {
+class SharedLogicCommonTest {
 
     @Test
     fun example() {
