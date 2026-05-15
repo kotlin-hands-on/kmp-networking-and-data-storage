@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">KmmApp</string>
+    <string name="app_name">spacetutorial</string>
 
     <string name="successful">Successful</string>
     <string name="unsuccessful">Unsuccessful</string>
@@ -10,4 +10,5 @@
     <string name="mission_name_field">Launch name: %s</string>
     <string name="launch_success_field">Launch success: %s</string>
     <string name="details_field">Launch details: %s</string>
+
 </resources>
