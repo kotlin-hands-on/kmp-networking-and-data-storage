@@ -10,7 +10,7 @@ struct RocketLaunchRow: View {
                 Text("\(rocketLaunch.missionName) - \(String(rocketLaunch.launchYear))").font(.system(size: 18)).bold()
                 Text(launchText).foregroundColor(launchColor)
                 Text("Launch year: \(String(rocketLaunch.launchYear))")
-                Text("\(rocketLaunch.status.description ?? "")")
+                Text("\(rocketLaunch.status.description_)")
             }
             Spacer()
         }
