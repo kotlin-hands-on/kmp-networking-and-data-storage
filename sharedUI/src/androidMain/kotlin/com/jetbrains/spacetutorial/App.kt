@@ -33,9 +33,7 @@ import com.jetbrains.spacetutorial.theme.app_theme_unsuccessful
 import kotlinx.coroutines.launch
 import org.koin.androidx.compose.koinViewModel
 
-@OptIn(
-    ExperimentalMaterial3Api::class
-)
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 @Preview
 fun App() {
@@ -95,7 +93,7 @@ fun App() {
                                 )
                                 Spacer(Modifier.height(8.dp))
                                 val details = launch.status.description
-                                if (details != null && details.isNotBlank()) {
+                                if (details.isNotBlank()) {
                                     Text(details)
                                 }
                             }

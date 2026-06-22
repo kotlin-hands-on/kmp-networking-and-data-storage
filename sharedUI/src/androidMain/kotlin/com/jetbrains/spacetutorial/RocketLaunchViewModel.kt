@@ -21,7 +21,7 @@ class RocketLaunchViewModel(private val sdk: SpaceXSDK) : ViewModel() {
             try {
                 val launches = sdk.getLaunches(forceReload = true)
                 _state.value = _state.value.copy(isLoading = false, launches = launches)
-            } catch (e: Exception) {
+            } catch (_: Exception) {
                 _state.value = _state.value.copy(isLoading = false, launches = emptyList())
             }
         }

@@ -10,9 +10,8 @@ val appModule = module {
     single<SpaceXApi> { SpaceXApi() }
     single<SpaceXSDK> {
         SpaceXSDK(
-            databaseDriverFactory = AndroidDatabaseDriverFactory(
-                androidContext()
-            ), api = get()
+            databaseDriverFactory = AndroidDatabaseDriverFactory(androidContext()),
+            api = get()
         )
     }
     viewModel { RocketLaunchViewModel(sdk = get()) }

@@ -9,6 +9,16 @@ plugins {
 }
 
 kotlin {
+    listOf(
+        iosArm64(),
+        iosSimulatorArm64()
+    ).forEach { iosTarget ->
+        iosTarget.binaries.framework {
+            baseName = "Shared"
+            isStatic = true
+        }
+    }
+
     androidLibrary {
         namespace = "com.jetbrains.spacetutorial.sharedLogic"
         compileSdk = libs.versions.android.compileSdk.get().toInt()
@@ -27,23 +37,13 @@ kotlin {
         }
     }
 
-    listOf(
-        iosArm64(),
-        iosSimulatorArm64()
-    ).forEach { iosTarget ->
-        iosTarget.binaries.framework {
-            baseName = "Shared"
-            isStatic = true
-        }
-    }
-
     @OptIn(ExperimentalKotlinGradlePluginApi::class)
     dependencies {
         implementation(libs.kotlinx.coroutines.core)
         implementation(libs.ktor.client.core)
         implementation(libs.ktor.client.content.negotiation)
         implementation(libs.ktor.serialization.kotlinx.json)
-        implementation(libs.runtime)
+        implementation(libs.sqldelight.runtime)
         implementation(libs.kotlinx.datetime)
         implementation(libs.koin.core)
         testImplementation(libs.kotlin.test)
@@ -56,14 +56,14 @@ kotlin {
         }
         androidMain.dependencies {
             implementation(libs.ktor.client.android)
-            implementation(libs.android.driver)
+            implementation(libs.sqldelight.android.driver)
             implementation(libs.kotlin.testJunit)
             implementation(libs.junit)
             implementation(libs.mockk)
         }
         iosMain.dependencies {
             implementation(libs.ktor.client.darwin)
-            implementation(libs.native.driver)
+            implementation(libs.sqldelight.native.driver)
         }
     }
 }
