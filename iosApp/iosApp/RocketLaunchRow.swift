@@ -10,7 +10,7 @@ struct RocketLaunchRow: View {
                 Text("\(rocketLaunch.missionName) - \(String(rocketLaunch.launchYear))").font(.system(size: 18)).bold()
                 Text(launchText).foregroundColor(launchColor)
                 Text("Launch year: \(String(rocketLaunch.launchYear))")
-                Text("\(rocketLaunch.details ?? "")")
+                Text("\(rocketLaunch.status.description ?? "")")
             }
             Spacer()
         }
@@ -19,18 +19,12 @@ struct RocketLaunchRow: View {
 
 extension RocketLaunchRow {
     private var launchText: String {
-        if let isSuccess = rocketLaunch.launchSuccess {
-            return isSuccess.boolValue ? "Successful" : "Unsuccessful"
-        } else {
-            return "No data"
-        }
+        let isSuccess = rocketLaunch.status.id == 3
+        return isSuccess ? "Successful" : "Unsuccessful"
     }
 
     private var launchColor: Color {
-        if let isSuccess = rocketLaunch.launchSuccess {
-            return isSuccess.boolValue ? Color.green : Color.red
-        } else {
-            return Color.gray
-        }
+        let isSuccess = rocketLaunch.status.id == 3
+        return isSuccess ? Color.green : Color.red
     }
 }

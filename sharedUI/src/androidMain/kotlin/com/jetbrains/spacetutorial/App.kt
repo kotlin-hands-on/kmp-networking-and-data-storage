@@ -90,11 +90,11 @@ fun App() {
                                 )
                                 Spacer(Modifier.height(8.dp))
                                 Text(
-                                    text = if (launch.launchSuccess == true) "Successful" else "Unsuccessful",
-                                    color = if (launch.launchSuccess == true) app_theme_successful else app_theme_unsuccessful
+                                    text = if (launch.status.id == 3) "Successful" else "Unsuccessful",
+                                    color = if (launch.status.id == 3) app_theme_successful else app_theme_unsuccessful
                                 )
                                 Spacer(Modifier.height(8.dp))
-                                val details = launch.details
+                                val details = launch.status.description
                                 if (details != null && details.isNotBlank()) {
                                     Text(details)
                                 }

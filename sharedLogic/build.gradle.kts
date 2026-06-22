@@ -28,7 +28,6 @@ kotlin {
     }
 
     listOf(
-        iosX64(),
         iosArm64(),
         iosSimulatorArm64()
     ).forEach { iosTarget ->
@@ -48,9 +47,9 @@ kotlin {
         implementation(libs.kotlinx.datetime)
         implementation(libs.koin.core)
         testImplementation(libs.kotlin.test)
-        testImplementation(libs.kotlin.testJunit)
-        testImplementation(libs.junit)
-        testImplementation(libs.mockk)
+        //testImplementation(libs.kotlin.testJunit)
+        //testImplementation(libs.junit)
+        //testImplementation(libs.mockk)
         testImplementation(libs.kotlinx.coroutines.test)
     }
 
@@ -71,7 +70,7 @@ kotlin {
 
 sqldelight {
     databases {
-        create("AppDatabase") {
+        create("AppDatabase_2_3_0") {
             packageName.set("com.jetbrains.spacetutorial.cache")
         }
     }

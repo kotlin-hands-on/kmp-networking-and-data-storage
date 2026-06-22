@@ -1,0 +1,23 @@
+import kotlin.Boolean;
+
+CREATE TABLE Launch (
+    flightNumber TEXT NOT NULL,
+    missionName TEXT NOT NULL,
+    launchDateUTC TEXT NOT NULL,
+    imageSmall TEXT NOT NULL,
+    imageLarge TEXT NOT NULL,
+    statusId INTEGER NOT NULL,
+    statusName TEXT NOT NULL,
+    statusDescription TEXT NOT NULL
+);
+
+insertLaunch:
+INSERT INTO Launch(flightNumber, missionName, launchDateUTC, imageSmall, imageLarge, statusId, statusName, statusDescription)
+VALUES(?, ?, ?, ?, ?, ?, ?, ?);
+
+removeAllLaunches:
+DELETE FROM Launch;
+
+selectAllLaunchesInfo:
+SELECT Launch.*
+FROM Launch;
