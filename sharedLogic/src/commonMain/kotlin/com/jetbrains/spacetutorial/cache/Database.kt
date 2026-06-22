@@ -5,8 +5,8 @@ import com.jetbrains.spacetutorial.entity.LaunchStatus
 import com.jetbrains.spacetutorial.entity.RocketLaunch
 
 internal class Database(databaseDriverFactory: DatabaseDriverFactory) {
-    private val database = AppDatabase_2_3_0(databaseDriverFactory.createDriver())
-    private val dbQuery = database.appDatabase_2_3_0Queries
+    private val database = AppDatabase(databaseDriverFactory.createDriver())
+    private val dbQuery = database.appDatabaseQueries
 
     internal fun getAllLaunches(): List<RocketLaunch> {
         return dbQuery.selectAllLaunchesInfo(::mapLaunchSelecting).executeAsList()

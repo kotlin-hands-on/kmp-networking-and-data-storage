@@ -3,8 +3,8 @@ package com.jetbrains.spacetutorial
 import app.cash.sqldelight.db.SqlDriver
 import com.jetbrains.spacetutorial.cache.Database
 import com.jetbrains.spacetutorial.cache.DatabaseDriverFactory
-import com.jetbrains.spacetutorial.entity.Links
-import com.jetbrains.spacetutorial.entity.Patch
+import com.jetbrains.spacetutorial.entity.Image
+import com.jetbrains.spacetutorial.entity.LaunchStatus
 import com.jetbrains.spacetutorial.entity.RocketLaunch
 import com.jetbrains.spacetutorial.network.SpaceXApi
 import io.mockk.coEvery
@@ -32,48 +32,48 @@ class SpaceXSDKTest {
     // Sample data for testing
     private val sampleLaunches = listOf(
         RocketLaunch(
-            flightNumber = 1,
+            id = "1",
             missionName = "Test Mission 1",
             launchDateUTC = "2023-01-01T12:00:00Z",
-            details = "Test details 1",
-            launchSuccess = true,
-            links = Links(
-                patch = Patch(
-                    small = "small_url_1",
-                    large = "large_url_1"
-                ),
-                article = "article_url_1"
+            image = Image(
+                small = "thumbnail_url_1",
+                large = "image_url_1"
+            ),
+            status = LaunchStatus(
+                id = 3,
+                name = "Successful",
+                description = "Successful launch"
             )
         ),
         RocketLaunch(
-            flightNumber = 2,
+            id = "2",
             missionName = "Test Mission 2",
             launchDateUTC = "2023-02-01T12:00:00Z",
-            details = "Test details 2",
-            launchSuccess = false,
-            links = Links(
-                patch = Patch(
-                    small = "small_url_2",
-                    large = "large_url_2"
-                ),
-                article = "article_url_2"
+            image = Image(
+                small = "thumbnail_url_2",
+                large = "image_url_2"
+            ),
+            status = LaunchStatus(
+                id = 0,
+                name = "Failed",
+                description = "Failed launch"
             )
         )
     )
 
     private val sampleLaunches2 = listOf(
         RocketLaunch(
-            flightNumber = 3,
+            id = "3",
             missionName = "Test Mission 3",
             launchDateUTC = "2023-01-01T12:00:00Z",
-            details = "Test details 3",
-            launchSuccess = true,
-            links = Links(
-                patch = Patch(
-                    small = "small_url_3",
-                    large = "large_url_3"
-                ),
-                article = "article_url_3"
+            image = Image(
+                small = "thumbnail_url_3",
+                large = "image_url_3"
+            ),
+            status = LaunchStatus(
+                id = 3,
+                name = "Successful",
+                description = "Successful launch"
             )
         ),
     )

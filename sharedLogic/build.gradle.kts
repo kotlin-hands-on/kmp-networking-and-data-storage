@@ -47,9 +47,6 @@ kotlin {
         implementation(libs.kotlinx.datetime)
         implementation(libs.koin.core)
         testImplementation(libs.kotlin.test)
-        //testImplementation(libs.kotlin.testJunit)
-        //testImplementation(libs.junit)
-        //testImplementation(libs.mockk)
         testImplementation(libs.kotlinx.coroutines.test)
     }
 
@@ -60,6 +57,9 @@ kotlin {
         androidMain.dependencies {
             implementation(libs.ktor.client.android)
             implementation(libs.android.driver)
+            implementation(libs.kotlin.testJunit)
+            implementation(libs.junit)
+            implementation(libs.mockk)
         }
         iosMain.dependencies {
             implementation(libs.ktor.client.darwin)
@@ -70,7 +70,7 @@ kotlin {
 
 sqldelight {
     databases {
-        create("AppDatabase_2_3_0") {
+        create("AppDatabase") {
             packageName.set("com.jetbrains.spacetutorial.cache")
         }
     }
