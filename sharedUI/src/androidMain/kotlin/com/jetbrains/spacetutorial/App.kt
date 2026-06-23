@@ -2,26 +2,14 @@ package com.jetbrains.spacetutorial
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
-import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.HorizontalDivider
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
-import androidx.compose.material3.TopAppBar
+import androidx.compose.material3.*
 import androidx.compose.material3.pulltorefresh.PullToRefreshBox
 import androidx.compose.material3.pulltorefresh.rememberPullToRefreshState
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.rememberCoroutineScope
-import androidx.compose.runtime.setValue
+import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
@@ -81,17 +69,21 @@ fun App() {
                 } else {
                     LazyColumn {
                         items(state.launches) { launch: RocketLaunch ->
-                            Column(modifier = Modifier.padding(16.dp)) {
+                            Column(
+                                verticalArrangement = Arrangement.spacedBy(8.dp),
+                                modifier = Modifier.padding(16.dp)
+                            ) {
                                 Text(
-                                    text = "${launch.missionName} - ${launch.launchYear}",
+                                    text = launch.missionName,
                                     style = MaterialTheme.typography.headlineSmall
                                 )
-                                Spacer(Modifier.height(8.dp))
                                 Text(
                                     text = if (launch.status.id == 3) "Successful" else "Unsuccessful",
                                     color = if (launch.status.id == 3) app_theme_successful else app_theme_unsuccessful
                                 )
-                                Spacer(Modifier.height(8.dp))
+                                Text(
+                                    text = "Launch year: ${launch.launchYear}"
+                                )
                                 val details = launch.status.description
                                 if (details.isNotBlank()) {
                                     Text(details)

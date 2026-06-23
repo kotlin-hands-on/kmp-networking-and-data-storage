@@ -7,7 +7,10 @@ struct RocketLaunchRow: View {
     var body: some View {
         HStack() {
             VStack(alignment: .leading, spacing: 10.0) {
-                Text("\(rocketLaunch.missionName) - \(String(rocketLaunch.launchYear))").font(.system(size: 18)).bold()
+                Text("\(rocketLaunch.missionName)")
+                    .font(.system(size: 18))
+                    .bold()
+                    .fixedSize(horizontal: false, vertical: true)
                 Text(launchText).foregroundColor(launchColor)
                 Text("Launch year: \(String(rocketLaunch.launchYear))")
                 Text("\(rocketLaunch.status.description_)")
