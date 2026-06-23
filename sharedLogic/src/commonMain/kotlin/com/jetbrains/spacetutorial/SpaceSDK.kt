@@ -3,9 +3,9 @@ package com.jetbrains.spacetutorial
 import com.jetbrains.spacetutorial.cache.Database
 import com.jetbrains.spacetutorial.cache.DatabaseDriverFactory
 import com.jetbrains.spacetutorial.entity.RocketLaunch
-import com.jetbrains.spacetutorial.network.SpaceXApi
+import com.jetbrains.spacetutorial.network.SpaceApi
 
-class SpaceXSDK(databaseDriverFactory: DatabaseDriverFactory, val api: SpaceXApi) {
+class SpaceSDK(databaseDriverFactory: DatabaseDriverFactory, val api: SpaceApi) {
     private val database = Database(databaseDriverFactory)
 
     @Throws(Exception::class)
