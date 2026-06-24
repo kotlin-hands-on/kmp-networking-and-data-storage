@@ -28,23 +28,22 @@ kotlin {
 
     @OptIn(ExperimentalKotlinGradlePluginApi::class)
     dependencies {
-        implementation(libs.androidx.compose.material3)
-        implementation(libs.koin.androidx.compose)
-        implementation(libs.androidx.lifecycle.viewmodel.compose)
+        api(projects.sharedLogic)
         implementation(libs.compose.runtime)
         implementation(libs.compose.foundation)
+        implementation(libs.compose.material3)
         implementation(libs.compose.ui)
-        implementation(libs.compose.resources)
+        implementation(libs.compose.components.resources)
         implementation(libs.compose.uiToolingPreview)
-        implementation(libs.androidx.lifecycle.viewmodel)
+        implementation(libs.androidx.lifecycle.viewmodelCompose)
         implementation(libs.androidx.lifecycle.runtimeCompose)
         implementation(libs.compose.uiToolingPreview)
-        implementation(projects.sharedLogic)
+        implementation(libs.koin.androidx.compose)
 
         testImplementation(libs.kotlin.test)
     }
 }
 
 dependencies {
-    androidRuntimeClasspath(libs.compose.ui.tooling)
+    androidRuntimeClasspath(libs.compose.uiTooling)
 }

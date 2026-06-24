@@ -8,35 +8,41 @@ import kotlinx.serialization.Serializable
 import kotlin.time.Instant
 
 @Serializable
+data class LaunchStatus(
+    @SerialName("id")
+    val id: Int,
+    @SerialName("name")
+    val name: String,
+    @SerialName(value = "description")
+    val description: String
+)
+
+@Serializable
+data class LaunchListResponse(
+    @SerialName("results")
+    val results: List<RocketLaunch>,
+)
+
+@Serializable
 data class RocketLaunch(
-    @SerialName("flight_number")
-    val flightNumber: Int,
+    @SerialName("id")
+    val id: String,
     @SerialName("name")
     val missionName: String,
-    @SerialName("date_utc")
+    @SerialName("net")
     val launchDateUTC: String,
-    @SerialName("details")
-    val details: String?,
-    @SerialName("success")
-    val launchSuccess: Boolean?,
-    @SerialName("links")
-    val links: Links
+    @SerialName(value = "image")
+    val image: Image,
+    @SerialName(value = "status")
+    val status: LaunchStatus,
 ) {
     var launchYear = Instant.parse(launchDateUTC).toLocalDateTime(TimeZone.UTC).year
 }
 
 @Serializable
-data class Links(
-    @SerialName("patch")
-    val patch: Patch?,
-    @SerialName("article")
-    val article: String?
-)
-
-@Serializable
-data class Patch(
-    @SerialName("small")
-    val small: String?,
-    @SerialName("large")
-    val large: String?
+data class Image(
+    @SerialName("thumbnail_url")
+    val small: String,
+    @SerialName("image_url")
+    val large: String,
 )

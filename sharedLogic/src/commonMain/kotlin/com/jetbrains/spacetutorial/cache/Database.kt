@@ -1,7 +1,7 @@
 package com.jetbrains.spacetutorial.cache
 
-import com.jetbrains.spacetutorial.entity.Links
-import com.jetbrains.spacetutorial.entity.Patch
+import com.jetbrains.spacetutorial.entity.Image
+import com.jetbrains.spacetutorial.entity.LaunchStatus
 import com.jetbrains.spacetutorial.entity.RocketLaunch
 
 internal class Database(databaseDriverFactory: DatabaseDriverFactory) {
@@ -13,27 +13,27 @@ internal class Database(databaseDriverFactory: DatabaseDriverFactory) {
     }
 
     private fun mapLaunchSelecting(
-        flightNumber: Long,
+        flightNumber: String,
         missionName: String,
-        details: String?,
-        launchSuccess: Boolean?,
         launchDateUTC: String,
-        patchUrlSmall: String?,
-        patchUrlLarge: String?,
-        articleUrl: String?
+        imageSmall: String,
+        imageLarge: String,
+        statusId: Long,
+        statusName: String,
+        statusDescription: String
     ): RocketLaunch {
         return RocketLaunch(
-            flightNumber = flightNumber.toInt(),
+            id = flightNumber,
             missionName = missionName,
-            details = details,
             launchDateUTC = launchDateUTC,
-            launchSuccess = launchSuccess,
-            links = Links(
-                patch = Patch(
-                    small = patchUrlSmall,
-                    large = patchUrlLarge
-                ),
-                article = articleUrl
+            image = Image(
+                small = imageSmall,
+                large = imageLarge
+            ),
+            status = LaunchStatus(
+                id = statusId.toInt(),
+                name = statusName,
+                description = statusDescription
             )
         )
     }
@@ -43,17 +43,16 @@ internal class Database(databaseDriverFactory: DatabaseDriverFactory) {
             dbQuery.removeAllLaunches()
             launches.forEach { launch ->
                 dbQuery.insertLaunch(
-                    flightNumber = launch.flightNumber.toLong(),
+                    flightNumber = launch.id,
                     missionName = launch.missionName,
-                    details = launch.details,
-                    launchSuccess = launch.launchSuccess ?: false,
                     launchDateUTC = launch.launchDateUTC,
-                    patchUrlSmall = launch.links.patch?.small,
-                    patchUrlLarge = launch.links.patch?.large,
-                    articleUrl = launch.links.article
+                    imageSmall = launch.image.small,
+                    imageLarge = launch.image.large,
+                    statusId = launch.status.id.toLong(),
+                    statusName = launch.status.name,
+                    statusDescription = launch.status.description,
                 )
             }
         }
     }
-
 }

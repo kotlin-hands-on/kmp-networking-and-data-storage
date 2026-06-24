@@ -7,7 +7,7 @@ struct ContentView: View {
     var body: some View {
         NavigationView {
             listView()
-            .navigationBarTitle("SpaceX Launches")
+            .navigationBarTitle("Space Launches")
             .navigationBarItems(trailing:
                 Button("Reload") {
                     self.viewModel.loadLaunches(forceReload: true)
